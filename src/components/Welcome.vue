@@ -88,10 +88,12 @@ export default {
       <input type="text" id="nameInput" v-model="inputValue"
              class="w-full px-4 py-2 border focus:outline-none focus:ring focus:ring-gold-500 rounded-md transition-all duration-150 ease-in-out">
 
+      <div class="flex justify-center">
       <button @click="submit" id="submitButton"
               class="mt-4 bg-amber-400 text-white px-4 py-2 rounded-md hover:bg-amber-600 focus:outline-none focus:ring focus:ring-amber-500 transition-all duration-300 ease-in-out">
         Tiếp tục
       </button>
+      </div>
     </div>
     <div class="w-1/4 flex justify-start pl-4">
       <img src="https://media4.giphy.com/media/cuXaELHmjmv7EDYY9R/source.gif" class="w-full" alt="">
