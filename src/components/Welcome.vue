@@ -41,7 +41,7 @@ export default {
             params: {text: "chị xinh đẹp =))))"}
           });
         } else {
-          text.value =  inputValue.value;
+          text.value = inputValue.value;
           await router.push({
             name: "Home",
             params: {text: inputValue.value}
@@ -50,7 +50,7 @@ export default {
 
         const docRef = await addDoc(collection(db, "inputs"), {
           value: inputValue.value,
-          time:  new Date().toLocaleString()
+          time: new Date().toLocaleString()
         });
       } catch (error) {
         console.error("Error adding document: ", error);
@@ -70,31 +70,35 @@ export default {
 
 <template>
   <div class="flex justify-center">
-    <h1 class="fixed uppercase text-xl font-bold text-white mt-10">Chúc mừng năm mới Giáp Thìn 2024 - vạn sự như ý - sinh lý dồi dào - vàng đeo cả kí - thật là hết ý.</h1>
+    <h1 class="fixed uppercase text-xl md:text-2xl font-bold text-white mt-10">Chúc mừng năm mới Giáp Thìn 2024 - vạn sự
+      như ý - sinh lý dồi dào - vàng đeo cả kí - thật là hết ý.</h1>
   </div>
   <div class="min-h-screen flex justify-center items-center
-    h-screen
-    bg-gradient-to-r
-    from-pink-500
-    via-red-500
-    to-yellow-500
-    background-animate w-full md:w-[200vh]">
-    <div class="w-1/4 flex justify-end pr-4">
-      <img src="https://media4.giphy.com/media/cuXaELHmjmv7EDYY9R/source.gif" class="w-full" alt=""
+  h-screen
+  bg-gradient-to-r
+  from-pink-500
+  via-red-500
+  to-yellow-500
+  background-animate w-full md:w-[200vh]">
+    <div class="flex justify-end">
+      <img src="https://media4.giphy.com/media/cuXaELHmjmv7EDYY9R/source.gif" class="w-full" id="leftImg" alt=""
            style="transform: rotateY(180deg)">
     </div>
-    <div class="bg-white w-full max-w-md p-8 rounded-md shadow-md">
-      <label for="nameInput" class="block text-gold-500 text-sm font-bold mb-2">Nhập tên để nhận lì xì </label>
+    <div class="bg-white w-full p-8 rounded-md shadow-md" id="form">
+      <label for="nameInput" class="block text-gold-500 text-sm md:text-base font-bold mb-2">Nhập tên để tiếp tục </label>
       <input type="text" id="nameInput" v-model="inputValue"
              class="w-full px-4 py-2 border focus:outline-none focus:ring focus:ring-gold-500 rounded-md transition-all duration-150 ease-in-out">
 
-      <button @click="submit" id="submitButton"
-              class="mt-4 bg-amber-400 text-white px-4 py-2 rounded-md hover:bg-amber-600 focus:outline-none focus:ring focus:ring-amber-500 transition-all duration-300 ease-in-out">
-        Tiếp tục
-      </button>
+      <div class="flex justify-center">
+
+        <button @click="submit" id="submitButton"
+                class="mt-4 bg-amber-400 text-white px-4 py-2 rounded-md hover:bg-amber-600 focus:outline-none focus:ring focus:ring-amber-500 transition-all duration-300 ease-in-out">
+          Tiếp tục
+        </button>
+      </div>
     </div>
-    <div class="w-1/4 flex justify-start pl-4">
-      <img src="https://media4.giphy.com/media/cuXaELHmjmv7EDYY9R/source.gif" class="w-full" alt="">
+    <div class="flex justify-start">
+      <img src="https://media4.giphy.com/media/cuXaELHmjmv7EDYY9R/source.gif" class="w-full" id="rightImg" alt="">
     </div>
     <div id="modal" v-show="showModal">
       <span id="text" class="text-red-500"><Modal>{{ text }}</Modal></span>
@@ -123,6 +127,21 @@ body {
   }
   50% {
     background-position: 100% 50%;
+  }
+}
+
+@media (max-width: 600px) {
+  #leftImg {
+    width: 300vh;
+    height: auto;
+  }
+  #rightImg {
+    width: 300vh;
+    height: auto;
+  }
+  #form {
+    width: 300vh;
+    height: auto;
   }
 }
 </style>

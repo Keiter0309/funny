@@ -37,33 +37,57 @@ body {
     background-position: 100% 50%;
   }
 }
+
+@media (max-width: 600px) {
+  #leftImg {
+    width: 280vh;
+    height: 35vh;
+  }
+
+  #rightImg {
+    width: 280vh;
+    height: 35vh;
+  }
+
+  #form {
+    width: 500vh;
+    height: auto;
+  }
+}
+
 </style>
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gradient-to-r
   from-yellow-500
   via-red-500
-  to-yellow-500 background-animate">
-    <img src="https://media2.giphy.com/media/DgWCNBiuGt1bDrxu7W/source.gif" alt="" class="w-1/4 " style="transform: rotateY(180deg)">
-  <div class="bg-white w-full md:max-w-md p-4 md:p-10 rounded-lg shadow-lg">
-    <h1 class="text-sm md:text-base font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-yellow-500">
-      Hi {{text}}!, Giao thừa 2024 đã sắp điểm, chúc bạn đáng mến của tôi sang năm 2024 sự nghiệp tiến lên và gặp nhiều điều hên, gặt hái được nhiều trái ngọt trong tình yêu!
-    </h1>
-    <div class="flex flex-col md:flex-row justify-between">
+  to-yellow-500 background-animate md:w-[200vh]">
+    <div class="flex justify-start">
+      <img src="https://media2.giphy.com/media/DgWCNBiuGt1bDrxu7W/source.gif" alt="" class="w-full" id="leftImg"
+           style="transform: rotateY(180deg)">
+    </div>
+    <div class="bg-white w-full sm:w-3/4 md:w-1/2 lg:w-1/3 xl:w-1/4 p-4 md:p-10 rounded-lg shadow-lg" id="form">
+      <h1 class="text-sm md:text-base font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-yellow-500">
+        Hi {{ text }}!, Giao thừa 2024 đã sắp điểm, chúc bạn đáng mến của tôi sang năm 2024 sự nghiệp tiến lên và gặp
+        nhiều điều hên, gặt hái được nhiều trái ngọt trong tình yêu!
+      </h1>
+      <div class="flex flex-col md:flex-row justify-between">
 
-      <button
-          id="acceptButton"
-          class="transition-all duration-300 ease-in-out rounded p-3 bg-blue-500 hover:bg-indigo-500 text-white uppercase mt-3 md:mt-0">
-        Nhận lì xì
-      </button>
-      <button
-          id="rejectButton"
-          class="transition-all duration-300 ease-in-out rounded p-3 bg-red-500 hover:bg-red-700 text-white uppercase mt-3 md:mt-0">
-        Không nhận lì xì
-      </button>
+        <button
+            id="acceptButton"
+            class="transition-all duration-300 ease-in-out rounded p-3 bg-blue-500 hover:bg-indigo-500 text-white uppercase mt-3 md:mt-0">
+          Nhận lì xì
+        </button>
+        <button
+            id="rejectButton"
+            class="transition-all duration-300 ease-in-out rounded p-3 bg-red-500 hover:bg-red-700 text-white uppercase mt-3 md:mt-0">
+          Không nhận lì xì
+        </button>
+      </div>
+    </div>
+    <div class="flex justify-end">
+      <img src="https://media2.giphy.com/media/DgWCNBiuGt1bDrxu7W/source.gif" alt="" class="w-full" id="rightImg">
     </div>
   </div>
-    <img src="https://media2.giphy.com/media/DgWCNBiuGt1bDrxu7W/source.gif" alt="" class="w-1/4">
-</div>
 
 </template>
 <script>
@@ -78,14 +102,17 @@ export default {
 
     onMounted(() => {
       const acceptButton = document.getElementById('acceptButton');
-      acceptButton.addEventListener('mouseover', () => {
+      const moveButton = (event) => {
         let x = Math.floor(Math.random() * window.innerWidth) + 'px';
         let y = Math.floor(Math.random() * window.innerHeight) + 'px';
 
         acceptButton.style.position = 'absolute';
         acceptButton.style.left = x;
         acceptButton.style.top = y;
-      });
+      };
+
+      acceptButton.addEventListener('mouseover', moveButton);
+      acceptButton.addEventListener('touchstart', moveButton);
     });
 
     const modalClose = () => {
