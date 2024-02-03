@@ -88,17 +88,25 @@ body {
       <img src="https://media2.giphy.com/media/DgWCNBiuGt1bDrxu7W/source.gif" alt="" class="w-full" id="rightImg">
     </div>
   </div>
-
 </template>
 <script>
 import {ref, onMounted} from "vue";
 import {useRoute} from "vue-router";
+import Modal from "@/components/Modal.vue";
 
 export default {
+  components: {Modal},
   setup() {
     const route = useRoute();
     const text = ref(route.params.text);
-    const showModal = ref(true);
+    const showModal = ref(false);
+    const selectedQuote = ref('');
+
+    const trollQuotes = [
+      'Troll Quote 1',
+      'Troll Quote 2',
+      'Troll Quote 3',
+    ];
 
     onMounted(() => {
       const acceptButton = document.getElementById('acceptButton');
@@ -110,10 +118,16 @@ export default {
         acceptButton.style.left = x;
         acceptButton.style.top = y;
       };
-
       acceptButton.addEventListener('mouseover', moveButton);
       acceptButton.addEventListener('touchstart', moveButton);
+
+      const rejectButton = document.getElementById('rejectButton');
+      rejectButton.addEventListener('click', showTrollQuoteModal);
     });
+
+    const showTrollQuoteModal = () => {
+      alert('Không nhận lì xì à?');
+    }
 
     const modalClose = () => {
       showModal.value = false;
@@ -121,7 +135,9 @@ export default {
     return {
       text,
       modalClose,
-      showModal
+      showModal,
+      selectedQuote
     }
   }
-}</script>
+}
+</script>
