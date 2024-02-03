@@ -126,7 +126,7 @@ export default {
     });
 
     const showTrollQuoteModal = () => {
-      alert('Không nhận lì xì à?');
+      alert('Bạn không nhận lì xì shaoo?');
     }
 
     const modalClose = () => {
